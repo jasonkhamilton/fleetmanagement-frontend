@@ -1,0 +1,64 @@
+<template>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2>Assets</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Ref.</th>
+            <th scope="col">Registration Number</th>
+            <th scope="col">Make & Model</th>
+            <th scope="col">Type</th>
+            <th scope="col"></th>
+            <!-- Add other columns as needed -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="asset in assets" :key="asset.id">
+            <td>{{ asset.reference }}</td>
+            <td>{{ asset.registration_number }}</td>
+            <td>{{ asset.make }} {{ asset.model }}</td>
+            <td>{{ asset.type }}</td>
+            <td>
+              <router-link :to="`/asset/${ asset.id }`" class="btn btn-default btn-xs">Details</router-link>
+            </td>
+            <!-- Display other asset properties accordingly -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </template>
+  
+  <script>
+  import axios from 'axios';
+  
+  export default {
+    data() {
+      return {
+        assets: [],
+      };
+    },
+    mounted() {
+      this.fetchAssets(); // Fetch assets when the component is mounted
+    },
+    methods: {
+      async fetchAssets() {
+        try {
+          const response = await axios.get('http://localhost:3000/assets');
+          this.assets = response.data; // Assign the fetched data to the assets array
+        } catch (error) {
+          console.error('Error fetching assets:', error);
+          // Handle error if necessary
+        }
+      },
+    },
+  };
+  </script>
+  
+  <style>
+  /* Add your table styling here */
+  </style>
+  
