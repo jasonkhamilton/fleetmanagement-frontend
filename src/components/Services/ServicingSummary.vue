@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ServicesTable from './ServicesTable.vue';
-import CreateServiceForm from './CreateServiceForm.vue';
+import ServicesTable from '@/components/Services/ServicesTable.vue';
+import CreateServiceForm from '@/components/Services/CreateServiceForm.vue';
 
 export default {
     name: 'ServicingSummary',

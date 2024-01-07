@@ -55,9 +55,8 @@
 </template>
 <script>
 import axios from 'axios';
-import RecordReading from './RecordReading.vue';
-import ReadingsByAssetTable from './ReadingsByAssetTable.vue';
-import ServicesByAssetTable from './ServicesByAssetTable.vue';
+import { RecordReading, ReadingsByAssetTable } from '../Readings';
+import { ServicesByAssetTable } from '../Services';
 
 export default {
     data () {

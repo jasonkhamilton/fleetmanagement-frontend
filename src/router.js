@@ -1,10 +1,9 @@
 // router.js
 import { createRouter, createWebHistory } from 'vue-router';
 // Import your components
-import AssetSummary from './components/AssetSummary.vue';
-import AssetDetail from './components/AssetDetail.vue';
+import { AssetSummary, AssetDetail } from './components/Assets';
 import HomePage from './components/HomePage.vue';
-import ServicingSummary from './components/ServicingSummary.vue';
+import { ServicingSummary } from './components/Services';
 
 const routes = [
   {

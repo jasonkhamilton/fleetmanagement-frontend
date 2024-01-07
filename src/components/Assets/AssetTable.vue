@@ -36,6 +36,7 @@
   import axios from 'axios';
   
   export default {
+    name: 'AssetTable',
     data() {
       return {
         assets: [],
