@@ -1,9 +1,8 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2>Assets</h2>
-    </div>
-    <div class="panel-body">
+  <div class="card my-2">
+    <div class="card-body">
+      <h2 class="card-title">Assets</h2>
+      <div class="table-responsive">
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -22,12 +21,13 @@
             <td>{{ asset.make }} {{ asset.model }}</td>
             <td>{{ asset.type }}</td>
             <td>
-              <router-link :to="`/asset/${ asset.id }`" class="btn btn-default btn-xs">Details</router-link>
+              <router-link :to="`/asset/${ asset.id }`" class="btn btn-outline-primary btn-sm">Details</router-link>
             </td>
             <!-- Display other asset properties accordingly -->
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
   </template>

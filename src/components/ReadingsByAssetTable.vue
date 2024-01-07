@@ -1,26 +1,26 @@
 <template>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>Readings</h2>
-      </div>
-      <div class="panel-body">
+    <div class="card my-2">
+      <div class="card-body">
+        <h2 class="card-title">Readings</h2>
         <!-- <ReadingGraph /> -->
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Reading</th>
-              <th scope="col">Date</th>
-              <!-- Add other columns as needed -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="reading in readings" :key="reading.id">
-              <td>{{ reading.measurement }}</td>
-              <td>{{ new Date(Date.parse(reading.recorded_at)) }}</td>
-              <!-- Display other reading properties accordingly -->
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Reading</th>
+                <th scope="col">Date</th>
+                <!-- Add other columns as needed -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="reading in readings" :key="reading.id">
+                <td>{{ reading.measurement }}</td>
+                <td>{{ new Date(Date.parse(reading.recorded_at)) }}</td>
+                <!-- Display other reading properties accordingly -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     </template>

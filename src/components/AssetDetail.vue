@@ -1,22 +1,20 @@
 <template>
     <div>
-        <div v-if="this.asset != null" class="panel panel-default">
-            <div class="panel-heading">
-                <h2>{{ this.asset.reference }} - {{ this.asset.make }} {{ this.asset.model }}</h2>
-            </div>
-            <div class="panel-body">
+        <div v-if="this.asset != null" class="card my-2">
+            <div class="card-body">
+                <h2 class="card-title">{{ this.asset.reference }} - {{ this.asset.make }} {{ this.asset.model }}</h2>
                 <form @submit.prevent="deleteAsset">
-                    <div class="form-group">
-                        <button class="btn btn-warning" type="submit">Edit</button>
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                    <div class="mb-3">
+                        <button class="btn btn-outline-warning btn-sm" type="submit">Edit</button>
+                        <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
                     </div>
                 </form>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 my-2">
                             <img src="https://c8.alamy.com/comp/2E3KNXX/2017-white-australian-holden-ute-vehicle-parked-in-sydneyaustralia-2E3KNXX.jpg" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block"/>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 my-2">
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>

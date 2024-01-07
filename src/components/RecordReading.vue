@@ -1,19 +1,17 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>Record Reading</h2>
-        </div>
-        <div class="panel-body">
+    <div class="card my-2">
+        <div class="card-body">
+            <h2 class="card-title">Record Reading</h2>
             <form @submit.prevent="submitForm">
-                <div class="form-group">
-                    <label>Type:</label>
+                <div class="mb-3">
+                    <label class="form-label">Type:</label>
                     <select class="form-control" v-model="type" placeholder="Type">
                         <option value="KM">KM</option>
                         <option value="Hours">Hours</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>Reading:</label>
+                <div class="mb-3">
+                    <label class="form-label">Reading:</label>
                     <input class="form-control" type="text" v-model="reading" placeholder="Reading" />
                 </div>
                 <button class="btn btn-primary" type="submit">Submit</button>

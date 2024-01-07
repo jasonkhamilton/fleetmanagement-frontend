@@ -1,40 +1,38 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2>Create Asset</h2>
-    </div>
-    <div class="panel-body">
+  <div class="card my-2">
+    <div class="card-body">
+      <h2 class="card-title">Create Asset</h2>
       <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label>Unique Reference:</label>
+        <div class="mb-3">
+          <label class="form-label">Unique Reference:</label>
           <input class="form-control" type="text" v-model="reference" placeholder="Unique Reference*" />
         </div>
         
-        <div class="form-group">
-          <label>Registration Number:</label>
+        <div class="mb-3">
+          <label class="form-label">Registration Number:</label>
           <input class="form-control" type="text" v-model="registrationNumber" placeholder="Registraton Number" />
         </div>
         
-        <div class="form-group">
-          <label>Make:</label>
+        <div class="mb-3">
+          <label class="form-label">Make:</label>
           <input class="form-control" type="text" v-model="make" placeholder="Make" />
         </div>
         
-        <div class="form-group">
-          <label>Model:</label>
+        <div class="mb-3">
+          <label class="form-label">Model:</label>
           <input class="form-control" type="text" v-model="model" placeholder="Model" />
         </div>
         
-        <div class="form-group">
-          <label>Year:</label>
+        <div class="mb-3">
+          <label class="form-label">Year:</label>
           <input class="form-control" type="text" v-model="year" placeholder="Year" />
         </div>
 
-        <div class="form-group">
-          <label>Type:</label>
+        <div class="mb-3">
+          <label class="form-label">Type:</label>
           <input class="form-control" type="text" v-model="type" placeholder="Type" />
         </div>
-        <button class="btn btn-default" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
   </div>

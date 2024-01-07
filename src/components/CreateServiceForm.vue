@@ -1,26 +1,24 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>Create a Service</h2>
-        </div>
-        <div class="panel-body">
+    <div class="card my-2">
+        <div class="card-body">
+            <h2 class="card-title">Create a Service</h2>
             <form @submit.prevent="submitForm">
-                <div class="form-group">
-                    <label>Service Name:</label>
+                <div class="mb-3">
+                    <label class="form-label">Service Name:</label>
                     <input class="form-control" type="text" v-model="serviceName" placeholder="Service Name*" />
                 </div>
-                <div class="form-group">
-                    <label>Interval Type:</label>
+                <div class="mb-3">
+                    <label class="form-label">Interval Type:</label>
                     <select class="form-control" v-model="intervalType" placeholder="Type">
                         <option value="KM">KM</option>
                         <option value="Hours">Hours</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>Interval:</label>
+                <div class="mb-3">
+                    <label class="form-label">Interval:</label>
                     <input class="form-control" type="text" v-model="interval" placeholder="Interval*" />
                 </div>
-                <button class="btn btn-fault" type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">Submit</button>
             </form>
         </div>
     </div>

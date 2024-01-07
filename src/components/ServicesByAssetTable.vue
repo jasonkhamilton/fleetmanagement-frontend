@@ -1,29 +1,29 @@
 <template>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>Services</h2>
-      </div>
-      <div class="panel-body">
-        <table class="table table-bordered table-striped" v-if="services.length > 0">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Type</th>
-              <th scope="col">Interval</th>
-              <!-- Add other columns as needed -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="service in services" :key="service.id">
-              <td>{{ service.service_id }}</td>
-              <td>{{ service.service_name }}</td>
-              <td>{{ service.interval_type }}</td>
-              <td>{{ service.interval }}</td>
-              <!-- Display other service properties accordingly -->
-            </tr>
-          </tbody>
-        </table>
+    <div class="card my-2">
+      <div class="card-body">
+        <h2 class="card-title">Services</h2>
+        <div class="table-responsive" v-if="services.length > 0">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Interval</th>
+                <!-- Add other columns as needed -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="service in services" :key="service.id">
+                <td>{{ service.service_id }}</td>
+                <td>{{ service.service_name }}</td>
+                <td>{{ service.interval_type }}</td>
+                <td>{{ service.interval }}</td>
+                <!-- Display other service properties accordingly -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p v-else>There are no services set for this asset.</p>
         <router-link to="/servicing" class="btn btn-primary">Add a Service</router-link>
       </div>

@@ -1,31 +1,31 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2>Services</h2>
-    </div>
-    <div class="panel-body">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Interval</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="service in services" :key="service.id">
-            <td>{{ service.service_id }}</td>
-            <td>{{ service.service_name }}</td>
-            <td>{{ service.interval_type }}</td>
-            <td>{{ service.interval_days }}</td>
-            <td>
-              <router-link :to="`/service/${ service.id }`" class="btn btn-default btn-xs">Details</router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="card my-2">
+    <div class="card-body">
+      <h2 class="card-title">Services</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Interval</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="service in services" :key="service.id">
+              <td>{{ service.service_id }}</td>
+              <td>{{ service.service_name }}</td>
+              <td>{{ service.interval_type }}</td>
+              <td>{{ service.interval_days }}</td>
+              <td>
+                <router-link :to="`/service/${ service.id }`" class="btn btn-outline-primary btn-sm">Details</router-link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
