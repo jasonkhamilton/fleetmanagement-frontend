@@ -45,7 +45,7 @@
     methods: {
       async fetchServices() {
         try {
-          const response = await axios.get('http://localhost:3000/services');
+          const response = await axios.get(`${ process.env.VUE_APP_API_URL }/services`);
           this.services = response.data; // Assign the fetched data to the services array
         } catch (error) {
           console.error('Error fetching services:', error);

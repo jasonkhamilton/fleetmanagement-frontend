@@ -52,7 +52,7 @@
         async fetchServices(assetId) {
           console.log(assetId);
           try {
-            const response = await axios.get(`http://localhost:3000/services/byAsset/${ assetId }`);
+            const response = await axios.get(`${ process.env.VUE_APP_API_URL }/services/byAsset/${ assetId }`);
             this.services = response.data; // Assign the fetched data to the services array
           } catch (error) {
             console.error('Error fetching services:', error);

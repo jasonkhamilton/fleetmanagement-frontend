@@ -47,7 +47,7 @@ export default {
                     intervalDays: this.interval,
                 };
 
-                const response = await axios.post('http://localhost:3000/services', formData);
+                const response = await axios.post(`${ process.env.VUE_APP_API_URL }/services`, formData);
                 console.log('Form submitted!', response.data);
                 // Handle success (if needed)
             } catch (error) {

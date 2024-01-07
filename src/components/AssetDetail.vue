@@ -75,7 +75,7 @@ export default {
     methods: {
         async getAsset() {
             try {
-                const response = await axios.get(`http://localhost:3000/assets/${ this.assetId }`);
+                const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets/${ this.assetId }`);
                 this.asset = response.data;
             } catch (error) {
                 console.error('Error fetching asset:', error);
@@ -83,7 +83,7 @@ export default {
         },
         async deleteAsset() {
             try {
-                const response = await axios.delete(`http://localhost:3000/assets/${ this.assetId }`);
+                const response = await axios.delete(`${ process.env.VUE_APP_API_URL }/assets/${ this.assetId }`);
                 alert(response.message);
             } catch (error) {
                 console.error('Error deleting asset:', error);

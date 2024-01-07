@@ -47,7 +47,7 @@
     methods: {
       async fetchAssets() {
         try {
-          const response = await axios.get('http://localhost:3000/assets');
+          const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets`);
           this.assets = response.data; // Assign the fetched data to the assets array
         } catch (error) {
           console.error('Error fetching assets:', error);

@@ -51,7 +51,7 @@ export default {
                 measurement: this.reading
             };
 
-            const response = await axios.post('http://localhost:3000/readings', formData);
+            const response = await axios.post(`${ process.env.VUE_APP_API_URL }/readings`, formData);
             console.log('Form submitted!', response.data);
             // Handle success (if needed)
         } catch (error) {
