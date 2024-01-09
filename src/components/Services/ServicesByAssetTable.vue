@@ -51,12 +51,15 @@
       },
       methods: {
         async fetchServices(assetId) {
-          console.log(assetId);
           try {
             const response = await axios.get(`${ process.env.VUE_APP_API_URL }/services/byAsset/${ assetId }`);
             this.services = response.data; // Assign the fetched data to the services array
           } catch (error) {
-            console.error('Error fetching services:', error);
+            if (error.response.status == 404) {
+              console.log('No services found.');
+            } else {
+              console.error('Error fetching services:', error);
+            }
             // Handle error if necessary
           }
         },

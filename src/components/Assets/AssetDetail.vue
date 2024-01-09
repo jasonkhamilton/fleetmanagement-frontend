@@ -9,10 +9,17 @@
                         <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
                     </div>
                 </form>
+                <form @submit.prevent="uploadImage">
+                    <div clas="input-group mb-3">
+                        <input class="form-control" type="file" ref="fileInput"/>
+                        <button class="btn btn-outline-primary btn-sm" type="submit">Upload Image</button>
+                    </div>
+                </form>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 my-2">
-                            <img src="https://c8.alamy.com/comp/2E3KNXX/2017-white-australian-holden-ute-vehicle-parked-in-sydneyaustralia-2E3KNXX.jpg" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block"/>
+                            <img :src="assetImage" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block" v-if="assetImage"/>
+                            <p v-else>No image found.</p>
                         </div>
                         <div class="col-md-8 my-2">
                             <table class="table table-bordered">
@@ -62,7 +69,8 @@ export default {
     data () {
         return {
             assetId: null,
-            asset: null
+            asset: null,
+            assetImage: null
         }
     },
     created () {
@@ -74,6 +82,7 @@ export default {
             try {
                 const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets/${ this.assetId }`);
                 this.asset = response.data;
+                this.getAssetImage();
             } catch (error) {
                 console.error('Error fetching asset:', error);
             }
@@ -84,6 +93,42 @@ export default {
                 alert(response.message);
             } catch (error) {
                 console.error('Error deleting asset:', error);
+            }
+        },
+        async uploadImage() {
+            try {
+                const formData = new FormData();
+                
+                formData.append('image', this.$refs.fileInput.files[0]);
+
+                const response = await axios.post(`${ process.env.VUE_APP_API_URL }/assets/image/${ this.assetId }`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                alert(response.message);
+                this.getAssetImage();
+            } catch (error) {
+                console.error('Error uploading image: ', error.response.data);
+            }
+        },
+        async getAssetImage() {
+            try {
+                const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets/image/${ this.assetId }`);
+                const binaryData = response.data.image_data.data;
+
+                const base64Image = btoa(
+                    new Uint8Array(binaryData).reduce(
+                    (data, byte) => data + String.fromCharCode(byte),
+                    ''
+                    )
+                );
+                
+                // Set the image source URL for <img> tag
+                this.assetImage = `data:image/jpeg;base64,${base64Image}`;
+                
+            } catch (error) {
+                console.error('Error fetching asset image:', error);
             }
         }
     },
