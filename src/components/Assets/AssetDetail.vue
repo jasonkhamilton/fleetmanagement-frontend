@@ -9,17 +9,11 @@
                         <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
                     </div>
                 </form>
-                <form @submit.prevent="uploadImage">
-                    <div clas="input-group mb-3">
-                        <input class="form-control" type="file" ref="fileInput"/>
-                        <button class="btn btn-outline-primary btn-sm" type="submit">Upload Image</button>
-                    </div>
-                </form>
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-md-4 my-2">
                             <img :src="assetImage" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block" v-if="assetImage"/>
-                            <p v-else>No image found.</p>
+                            <p class="text-center" v-else>No image found.</p>
                         </div>
                         <div class="col-md-8 my-2">
                             <table class="table table-bordered">
@@ -52,6 +46,16 @@
                             </table>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <form @submit.prevent="uploadImage" class="row g-3">
+                        <div class="col-auto">
+                            <input class="form-control" type="file" ref="fileInput"/>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-outline-primary" type="submit">Upload Image</button>
+                        </div>
+                    </form>
                 </div>
                 <RecordReading :asset="asset"/>
                 <ReadingsByAssetTable :asset="asset"/>
@@ -106,7 +110,7 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                alert(response.message);
+                alert(response.data);
                 this.getAssetImage();
             } catch (error) {
                 console.error('Error uploading image: ', error.response.data);
