@@ -42,6 +42,7 @@
 import axios from 'axios'
 export default {
   name: 'CreateAssetForm',
+  emits: ['reloadAssetTable'],
   data() {
     return {
         reference: '',
@@ -65,10 +66,12 @@ export default {
         };
 
         const response = await axios.post(`${ process.env.VUE_APP_API_URL }/assets`, formData);
-        console.log('Form submitted!', response.data);
         // Handle success (if needed)
+        this.$emit('reloadAssetTable');
+        alert(response.data.message);
       } catch (error) {
-        console.error('Error submitting form:', error);
+        alert('Error creating Asset.');
+        console.log(error);
         // Handle error (if needed)
       }
     },

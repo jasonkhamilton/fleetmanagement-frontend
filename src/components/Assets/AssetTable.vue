@@ -37,6 +37,7 @@
   
   export default {
     name: 'AssetTable',
+    expose: ['fetchAssets'],
     data() {
       return {
         assets: [],
