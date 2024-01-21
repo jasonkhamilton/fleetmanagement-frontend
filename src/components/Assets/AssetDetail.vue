@@ -5,7 +5,7 @@
                 <h2 class="card-title">{{ this.asset.reference }} - {{ this.asset.make }} {{ this.asset.model }}</h2>
                 <form @submit.prevent="deleteAsset">
                     <div class="mb-3">
-                        <button class="btn btn-outline-warning btn-sm" type="submit">Edit</button>
+                        <!-- <button class="btn btn-outline-warning btn-sm" type="submit">Edit</button> -->
                         <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
                     </div>
                 </form>
@@ -94,7 +94,8 @@ export default {
         async deleteAsset() {
             try {
                 const response = await axios.delete(`${ process.env.VUE_APP_API_URL }/assets/${ this.assetId }`);
-                alert(response.message);
+                alert(response.data.message);
+                this.$router.push('/assets');
             } catch (error) {
                 console.error('Error deleting asset:', error);
             }
