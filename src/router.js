@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { AssetSummary, AssetDetail } from './components/Assets';
 import HomePage from './components/HomePage.vue';
 import { ServicingSummary } from './components/Services';
+import { WorkOrderSummary, WorkOrderDetail } from './components/WorkOrders';
 
 const routes = [
   {
@@ -28,6 +29,18 @@ const routes = [
     component: ServicingSummary,
     props: true
   },
+  {
+    path: '/workorders',
+    name: 'WorkOrders',
+    component: WorkOrderSummary,
+    props: true
+  },
+  {
+    path: '/workorder/:id',
+    name: 'WorkOrderDetail',
+    component: WorkOrderDetail,
+    props: true
+  }
   // Add more routes as needed
 ];
 
