@@ -32,6 +32,12 @@
           <label class="form-label">Type:</label>
           <input class="form-control" type="text" v-model="type" placeholder="Type" />
         </div>
+
+        <div class="mb-3">
+          <label class="form-label">Serial:</label>
+          <input class="form-control" type="text" v-model="serial" placeholder="Serial" />
+        </div>
+
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
@@ -50,7 +56,8 @@ export default {
         make: '',
         model: '',
         year: '',
-        type: ''
+        type: '',
+        serial: ''
     };
   },
   methods: {
@@ -62,7 +69,8 @@ export default {
             make: this.make,
             model: this.model,
             year: this.year,
-            type: this.type
+            type: this.type,
+            serial: this.serial
         };
 
         const response = await axios.post(`${ process.env.VUE_APP_API_URL }/assets`, formData);
