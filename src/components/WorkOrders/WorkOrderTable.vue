@@ -17,7 +17,8 @@
                     <tbody>
                     <tr v-for="workOrder in workOrders" :key="workOrder.work_order_id">
                         <td>{{ workOrder.work_order_id }}</td>
-                        <td>{{ workOrder.asset_id }}</td>
+                        <td v-if="this.assetReference">{{ workOrder.asset_id }}</td>
+                        <td v-else>{{ workOrder.assetReference }}</td>
                         <td>{{ workOrder.description }}</td>
                         <td>{{ workOrder.time_in_hours }}</td>
                         <td>${{ parseInt(workOrder.cost_parts, 10) + parseInt(workOrder.cost_labor, 10) }}</td>
@@ -53,11 +54,22 @@ export default {
         try {
           const response = await axios.get(`${ process.env.VUE_APP_API_URL }/workorders`);
           this.workOrders = response.data; // Assign the fetched data to the work orders array
+          for(var i = 0; i < this.workOrders.length; i++) {
+            this.workOrders[i].assetReference = await this.getAssetReferences(this.workOrders[i].asset_id);
+          }
         } catch (error) {
           console.error('Error fetching work orders:', error);
           // Handle error if necessary
         }
       },
+      async getAssetReferences (id) {
+        try {
+          const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets/${ id }`);
+          return response.data.reference;
+        } catch (err) {
+          console.log('Error fetching asset details: ', err);
+        }
+      }
     },
 }
 </script>
