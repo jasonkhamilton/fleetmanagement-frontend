@@ -40,22 +40,24 @@ export default {
             required: true
         }
     },
+    emits: ['reloadReadingTable'],
     methods: {
         async submitForm() {
-        try {
-            const formData = {
-                asset_id: this.asset.id,
-                measurement_type: this.type,
-                measurement: this.reading
-            };
+            try {
+                const formData = {
+                    asset_id: this.asset.id,
+                    measurement_type: this.type,
+                    measurement: this.reading
+                };
 
-            const response = await axios.post(`${ process.env.VUE_APP_API_URL }/readings`, formData);
-            console.log('Form submitted!', response.data);
-            // Handle success (if needed)
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            // Handle error (if needed)
-        }
+                const response = await axios.post(`${ process.env.VUE_APP_API_URL }/readings`, formData);
+                console.log('Form submitted!', response.data);
+                this.$emit('reloadReadingTable');
+                // Handle success (if needed)
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                // Handle error (if needed)
+            }
         }
     }
 }

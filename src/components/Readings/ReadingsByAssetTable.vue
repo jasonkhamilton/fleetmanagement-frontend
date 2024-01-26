@@ -22,7 +22,7 @@
           </table>
         </div>
         <p v-else>There are no readings for this asset.</p>
-        <RecordReading :asset="asset"/>
+        <RecordReading :asset="asset" @reloadReadingTable="fetchReadings(this.asset.id)"/>
       </div>
     </div>
     </template>
