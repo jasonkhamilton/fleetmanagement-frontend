@@ -3,7 +3,7 @@
       <div class="card-body">
         <h2 class="card-title">Readings</h2>
         <!-- <ReadingGraph /> -->
-        <div class="table-responsive">
+        <div class="table-responsive" v-if="readings.length > 0">
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -21,6 +21,8 @@
             </tbody>
           </table>
         </div>
+        <p v-else>There are no readings for this asset.</p>
+        <RecordReading :asset="asset"/>
       </div>
     </div>
     </template>
@@ -28,10 +30,12 @@
     <script>
     import axios from 'axios';
     // import ReadingGraph from './ReadingGraph.vue';
+    import RecordReading from './RecordReading.vue';
     
     export default {
       components: {
         // ReadingGraph
+        RecordReading
       },
       data() {
         return {

@@ -12,6 +12,7 @@
                         <th scope="col">Time</th>
                         <th scope="col">Cost</th>
                         <th scope="col">Status</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

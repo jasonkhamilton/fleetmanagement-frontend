@@ -12,7 +12,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-4 my-2">
-                            <img :src="assetImage" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block" v-if="assetImage"/>
+                            <img :src="assetImage" style="max-width: 100%;" class="img-fluid rounded mx-auto d-block img-tumbnail" v-if="assetImage"/>
                             <p class="text-center" v-else>No image found.</p>
                         </div>
                         <div class="col-md-8 my-2">
@@ -26,7 +26,7 @@
                                     <th scope="col">Make & Model</th>
                                     <td>{{ asset.make }} {{ asset.model }}</td>
                                 </tr>
-                                <tr>
+                                <tr v-if="asset.registration_number != ''">
                                     <th scope="col">Registration</th>
                                     <td>{{ asset.registration_number }}</td>
                                 </tr>
@@ -57,7 +57,7 @@
                         </div>
                     </form>
                 </div>
-                <RecordReading :asset="asset"/>
+                <WorkOrdersByAssetTable :asset="asset"/>
                 <ReadingsByAssetTable :asset="asset"/>
                 <ServicesByAssetTable :asset="asset"/>
             </div>
@@ -66,8 +66,9 @@
 </template>
 <script>
 import axios from 'axios';
-import { RecordReading, ReadingsByAssetTable } from '../Readings';
+import { ReadingsByAssetTable } from '../Readings';
 import { ServicesByAssetTable } from '../Services';
+import { WorkOrdersByAssetTable } from '../WorkOrders';
 
 export default {
     data () {
@@ -139,9 +140,9 @@ export default {
     },
     name: 'AssetDetail',
     components: {
-        RecordReading,
         ReadingsByAssetTable,
-        ServicesByAssetTable
+        ServicesByAssetTable,
+        WorkOrdersByAssetTable
     }
 }
 </script>
