@@ -5,6 +5,8 @@ import { AssetSummary, AssetDetail } from './components/Assets';
 import HomePage from './components/HomePage.vue';
 import { ServicingSummary } from './components/Services';
 import { WorkOrderSummary, WorkOrderDetail } from './components/WorkOrders';
+import { DivisionSummary } from './components/Divisions';
+import AssetsByDivision from './components/Divisions/AssetsByDivision.vue';
 
 const routes = [
   {
@@ -39,6 +41,18 @@ const routes = [
     path: '/workorder/:id',
     name: 'WorkOrderDetail',
     component: WorkOrderDetail,
+    props: true
+  },
+  {
+    path: '/divisions',
+    name: 'Divisions',
+    component: DivisionSummary,
+    props: true
+  },
+  {
+    path: '/division/:id',
+    name: 'AssetsByDivision',
+    component: AssetsByDivision,
     props: true
   }
   // Add more routes as needed

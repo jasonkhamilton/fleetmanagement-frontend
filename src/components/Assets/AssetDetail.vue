@@ -42,6 +42,11 @@
                                     <th scope="col">Engine Number</th>
                                     <td>{{ asset.engine_number }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Division</th>
+                                    <td v-if="division != null">{{ division.label}} - {{ division.description }}</td>
+                                    <td v-else>Division not set.</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -75,7 +80,8 @@ export default {
         return {
             assetId: null,
             asset: null,
-            assetImage: null
+            assetImage: null,
+            division: null
         }
     },
     created () {
@@ -88,6 +94,7 @@ export default {
                 const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets/${ this.assetId }`);
                 this.asset = response.data;
                 this.getAssetImage();
+                this.getAssetDivision();
             } catch (error) {
                 console.error('Error fetching asset:', error);
             }
@@ -135,6 +142,14 @@ export default {
                 
             } catch (error) {
                 console.error('Error fetching asset image:', error);
+            }
+        },
+        async getAssetDivision() {
+            try {
+                const response = await axios.get(`${ process.env.VUE_APP_API_URL }/divisions/${ this.asset.division_id}`);
+                this.division = response.data;
+            } catch (error) {
+                console.error('Error fetching division: ', error.response.data);
             }
         }
     },

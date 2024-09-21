@@ -15,7 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="asset in assets" :key="asset.id">
+          <tr v-if="!loaded">
+            <td colspan="5">Loading...</td>
+          </tr>
+          <tr v-else v-for="asset in assets" :key="asset.id">
             <td>{{ asset.reference }}</td>
             <td>{{ asset.registration_number }}</td>
             <td>{{ asset.make }} {{ asset.model }}</td>
@@ -24,6 +27,9 @@
               <router-link :to="`/asset/${ asset.id }`" class="btn btn-outline-primary btn-sm">Details</router-link>
             </td>
             <!-- Display other asset properties accordingly -->
+          </tr>
+          <tr v-if="assets.length == 0">
+            <td colspan="5">No Assets to show.</td>
           </tr>
         </tbody>
       </table>
@@ -40,6 +46,7 @@
     expose: ['fetchAssets'],
     data() {
       return {
+        loaded: false,
         assets: [],
       };
     },
@@ -51,6 +58,7 @@
         try {
           const response = await axios.get(`${ process.env.VUE_APP_API_URL }/assets`);
           this.assets = response.data; // Assign the fetched data to the assets array
+          this.loaded = true;
         } catch (error) {
           console.error('Error fetching assets:', error);
           // Handle error if necessary

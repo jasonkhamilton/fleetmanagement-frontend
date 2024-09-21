@@ -15,6 +15,16 @@
         </form>
       </div>
     </div>
+    <div class="card my-2">
+      <div class="card-body">
+        <h2 class="card-title">Delete All Assets</h2>
+        <form @submit.prevent="deleteAssets">
+          <div class="mb-3">
+            <button class="btn btn-outline-danger btn-sm" type="submit">Delete All!</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -44,10 +54,19 @@ export default {
                   'Content-Type': 'multipart/form-data'
               }
           });
-          alert(response.data);
+          alert(response.data.message);
       } catch (error) {
           console.error('Error uploading csv: ', error);
       }
+    },
+    async deleteAssets() {
+        try {
+            const response = await axios.delete(`${ process.env.VUE_APP_API_URL }/assets/deleteall`);
+            alert(response.data.message);
+            this.$router.push('/assets');
+        } catch (error) {
+            console.error('Error deleting asset:', error);
+        }
     }
   }
 }
