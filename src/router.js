@@ -63,4 +63,9 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach(() => {
+  console.log('hello');
+  document.querySelector('#navbarTogglerDemo01').classList.remove('show');
+})
+
 export default router;

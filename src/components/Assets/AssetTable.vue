@@ -28,7 +28,7 @@
             </td>
             <!-- Display other asset properties accordingly -->
           </tr>
-          <tr v-if="assets.length == 0">
+          <tr v-if="assets.length == 0 && loaded">
             <td colspan="5">No Assets to show.</td>
           </tr>
         </tbody>
