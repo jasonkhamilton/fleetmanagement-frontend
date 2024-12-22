@@ -38,7 +38,8 @@
           <input class="form-control" type="text" v-model="serial" placeholder="Serial" />
         </div>
 
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" value="submit">Submit</button>
+        <button class="btn btn-seconday" type="submit" value="submit-and-go">Submit & Go</button> 
       </form>
     </div>
   </div>
@@ -61,7 +62,7 @@ export default {
     };
   },
   methods: {
-    async submitForm() {
+    async submitForm(event) {
       try {
         const formData = {
             reference: this.reference,
@@ -75,8 +76,12 @@ export default {
 
         const response = await axios.post(`${ process.env.VUE_APP_API_URL }/assets`, formData);
         // Handle success (if needed)
-        this.$emit('reloadAssetTable');
-        alert(response.data.message);
+        if(event.submitter.value == 'submit') {
+          this.$emit('reloadAssetTable');
+          alert(response.data.message);
+        } else if(event.submitter.value == "submit-and-go") {
+          this.$router.push(`/asset/${ response.data.id }`);
+        }
       } catch (error) {
         alert('Error creating Asset.');
         console.log(error);
